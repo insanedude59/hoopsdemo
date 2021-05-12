@@ -5,9 +5,7 @@ local Section = Tab:NewSection("Aimbot")
 
 local player = game:GetService("Players").LocalPlayer
 local uis = game:GetService("UserInputService")
-Section:NewToggle("Aimbot", "Self explanatory", function(value)
-    toggle = value
-    while toggle do wait()
+Section:NewButton("Aimbot", "Self explanatory", function()
       function onKeyPress(inputObject, gameProcessedEvent)
 if inputObject.KeyCode == Enum.KeyCode.R then
 game.ReplicatedStorage.Ball.StartShooting:FireServer()
@@ -20,13 +18,11 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
         end
 end)
 
-Section:NewToggle("Aimbot Randomizer Mode", "Instead of being greens all the time, it will now be random. ", function(value)
+Section:NewButton("Aimbot Randomizer Mode", "Instead of being greens all the time, it will now be random. ", function()
     local table = {"Great", "Perfect"} 
 
 local value = math.random(1,#table) 
 local picked_value = table[value] 
-    toggle = value
-    while toggle do wait()
       function onKeyPress(inputObject, gameProcessedEvent)
 if inputObject.KeyCode == Enum.KeyCode.R then
 game.ReplicatedStorage.Ball.StartShooting:FireServer()
@@ -37,7 +33,7 @@ end
 end
 end)
 
-Section:NewToggle("Dunk Strength", "Self explanatory", function(value)
+Section:NewButton("Dunk Strength", "Self explanatory", function()
     local strength = 1000000000000000000000000000000000000 --put what strength you want here
     local Plr = game.Players.LocalPlayer
     if Plr.Character then
