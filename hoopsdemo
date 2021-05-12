@@ -1,0 +1,52 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Hoops", "DarkTheme")
+local Tab = Window:NewTab("Main")
+local Section = Tab:NewSection("Aimbot")
+
+local player = game:GetService("Players").LocalPlayer
+local uis = game:GetService("UserInputService")
+Section:NewToggle("Aimbot", "Self explanatory", function(value)
+    toggle = value
+    while toggle do wait()
+      function onKeyPress(inputObject, gameProcessedEvent)
+if inputObject.KeyCode == Enum.KeyCode.R then
+game.ReplicatedStorage.Ball.StartShooting:FireServer()
+wait(0.5)
+game.ReplicatedStorage.Ball.EndShooting:InvokeServer(true,"Perfect")
+end
+end
+
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)  
+        end
+end)
+
+Section:NewToggle("Aimbot Randomizer Mode", "Instead of being greens all the time, it will now be random. ", function(value)
+    local table = {"Great", "Perfect"} 
+
+local value = math.random(1,#table) 
+local picked_value = table[value] 
+    toggle = value
+    while toggle do wait()
+      function onKeyPress(inputObject, gameProcessedEvent)
+if inputObject.KeyCode == Enum.KeyCode.R then
+game.ReplicatedStorage.Ball.StartShooting:FireServer()
+wait(0.5)
+game.ReplicatedStorage.Ball.EndShooting:InvokeServer(true, picked_value)
+end
+end
+end
+end)
+
+Section:NewToggle("Dunk Strength", "Self explanatory", function(value)
+    local strength = 1000000000000000000000000000000000000 --put what strength you want here
+    local Plr = game.Players.LocalPlayer
+    if Plr.Character then
+    local descs = Plr.Character:GetDescendants()
+    for i = 1, #descs do
+    local desc = descs[i]
+    if desc:IsA"BasePart"then
+    desc.CustomPhysicalProperties = PhysicalProperties.new(100, 0.3, 0.5)
+    end
+    end
+    end
+end)
